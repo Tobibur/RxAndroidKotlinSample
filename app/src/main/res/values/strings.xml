@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RxAndroidKotlinSample</string>
+    <string name="click_now">Click Now</string>
+</resources>
