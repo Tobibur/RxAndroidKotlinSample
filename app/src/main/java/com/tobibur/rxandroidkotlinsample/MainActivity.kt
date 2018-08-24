@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val disposables : CompositeDisposable = CompositeDisposable()
 
     private val mTAG : String = "MainActivity"
+    var result : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<String>() {
                     override fun onComplete() {
+                        textView.text = result
                         Log.d(mTAG, "OnCompleted()")
                     }
 
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onNext(string: String) {
-                        textView.text = string
+                        result += "onNext() -> $string\n"
                         Log.d(mTAG, "onNext() -> $string")
                     }
                 }))
@@ -53,7 +55,11 @@ class MainActivity : AppCompatActivity() {
         return Observable.defer {
             // Do some long running operation
             SystemClock.sleep(5000)
-            Observable.just("one", "two", "three", "four", "five")
+            Observable.just("one", "two", "three", "four", "five", "five")
+                    .filter(io.reactivex.functions.Predicate {
+                        return@Predicate it.length>3
+                    })
+                    .distinct()
         }
     }
 
