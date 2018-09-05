@@ -6,9 +6,11 @@ import android.os.Bundle
 import com.tobibur.rxandroidkotlinsample.model.QuoteModel
 import com.tobibur.rxandroidkotlinsample.service.ApiClient
 import com.tobibur.rxandroidkotlinsample.service.ApiInterface
+import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_retrofit_rx_java.*
 import org.jetbrains.anko.toast
@@ -31,13 +33,9 @@ class RetrofitRxJavaActivity : AppCompatActivity() {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .retry(2)
-                        .subscribeWith(object : DisposableObserver<QuoteModel>(){
-                            override fun onComplete() {
-
-                            }
-
+                        .subscribeWith(object : DisposableSingleObserver<QuoteModel>(){
                             @SuppressLint("SetTextI18n")
-                            override fun onNext(t: QuoteModel) {
+                            override fun onSuccess(t: QuoteModel) {
                                 quoteText.text = t.quoteText + "\n\n -"+ t.quoteAuthor
                             }
 
