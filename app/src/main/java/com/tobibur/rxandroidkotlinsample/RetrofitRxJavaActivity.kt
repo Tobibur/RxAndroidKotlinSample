@@ -6,10 +6,8 @@ import android.os.Bundle
 import com.tobibur.rxandroidkotlinsample.model.QuoteModel
 import com.tobibur.rxandroidkotlinsample.service.ApiClient
 import com.tobibur.rxandroidkotlinsample.service.ApiInterface
-import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_retrofit_rx_java.*
