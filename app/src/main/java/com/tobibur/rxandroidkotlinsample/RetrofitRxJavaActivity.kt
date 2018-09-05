@@ -3,7 +3,6 @@ package com.tobibur.rxandroidkotlinsample
 import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.tobibur.rxandroidkotlinsample.model.QuoteModel
 import com.tobibur.rxandroidkotlinsample.service.ApiClient
 import com.tobibur.rxandroidkotlinsample.service.ApiInterface
