@@ -18,5 +18,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/retrofit_button"
         android:text="@string/retrofit2_rxjava"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rx_timer_btn"
+        android:text="@string/rxjava_timer"/>
 
 </LinearLayout>

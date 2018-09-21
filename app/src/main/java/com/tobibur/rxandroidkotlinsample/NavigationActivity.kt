@@ -13,5 +13,6 @@ class NavigationActivity : AppCompatActivity() {
 
         main_activity_button.setOnClickListener { startActivity<MainActivity>() }
         retrofit_button.setOnClickListener { startActivity<RetrofitRxJavaActivity>() }
+        rx_timer_btn.setOnClickListener{ startActivity<TimerActivity>()}
     }
 }
