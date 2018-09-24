@@ -18,19 +18,18 @@ class TimerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
-//        progress.max = 30
-//        progress.isIndeterminate = false
-
         compositeDisposable.add(Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .take(31)
-                .subscribeWith(object : DisposableObserver<Long>(){
+                .map { num->num.toInt() }
+                .map { num->30-num }
+                .subscribeWith(object : DisposableObserver<Int>(){
                     override fun onComplete() {
                         timerText.text = getString(R.string.done)
                         d("Timer", "Completed!")
                     }
 
-                    override fun onNext(t: Long) {
-                        progress.progress = t.toInt()
+                    override fun onNext(t: Int) {
+                        progress.progress = t
                         timerText.text = t.toString()
                         d("Timer", t.toString())
                     }
