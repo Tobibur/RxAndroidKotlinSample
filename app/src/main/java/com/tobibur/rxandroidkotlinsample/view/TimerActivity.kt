@@ -1,6 +1,6 @@
 package com.tobibur.rxandroidkotlinsample.view
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
 import com.tobibur.rxandroidkotlinsample.R

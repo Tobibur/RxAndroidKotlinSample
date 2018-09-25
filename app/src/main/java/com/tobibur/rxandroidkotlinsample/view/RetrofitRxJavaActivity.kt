@@ -1,7 +1,7 @@
 package com.tobibur.rxandroidkotlinsample.view
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.tobibur.rxandroidkotlinsample.R
 import com.tobibur.rxandroidkotlinsample.model.QuoteModel
