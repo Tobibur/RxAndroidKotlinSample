@@ -57,9 +57,9 @@ class MainActivity : AppCompatActivity() {
             // Do some long running operation
             SystemClock.sleep(5000)
             Observable.just("one", "two", "three", "four", "five", "five")
-                    .filter(io.reactivex.functions.Predicate {
-                        return@Predicate it.length>3
-                    })
+                    .filter{
+                        it.length>3
+                    }
                     .distinct()
         }
     }
