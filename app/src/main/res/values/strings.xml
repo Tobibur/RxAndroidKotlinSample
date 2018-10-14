@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">RxAndroidKotlinSample</string>
     <string name="click_now">Click Now</string>
-    <string name="activity_main_btn_txt">Main Activity (Simple Example)</string>
+    <string name="activity_main_btn_txt">Scheduler RxJava</string>
     <string name="retrofit2_rxjava">Retrofit2 RxJava</string>
-    <string name="rxjava_timer">RxJava Timer</string>
+    <string name="rxjava_timer">Timer RxJava</string>
     <string name="done">Done!</string>
 </resources>
