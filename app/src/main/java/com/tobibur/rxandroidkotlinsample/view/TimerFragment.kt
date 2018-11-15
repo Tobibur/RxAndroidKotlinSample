@@ -16,7 +16,8 @@ import java.util.concurrent.TimeUnit
 
 class TimerFragment : Fragment() {
 
-    private val compositeDisposable = CompositeDisposable()
+    private var compositeDisposable = CompositeDisposable()
+    private var lastTimerValue: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_timer, container, false)
@@ -25,10 +26,16 @@ class TimerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        startTimer(30)
+
+        controlTimer()
+    }
+
+    private fun startTimer(time: Long) {
         compositeDisposable.add(Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .take(31)
+                .take(time+1)
                 .map { num -> num.toInt() }
-                .map { num -> 30 - num }
+                .map { num -> time.toInt() - num }
                 .subscribeWith(object : DisposableObserver<Int>() {
                     override fun onComplete() {
                         tv_timer.text = getString(R.string.done)
@@ -39,6 +46,7 @@ class TimerFragment : Fragment() {
                         pb_timer.progress = t
                         tv_timer.text = t.toString()
                         Log.d("Timer", t.toString())
+                        lastTimerValue = t
                     }
 
                     override fun onError(e: Throwable) {
@@ -46,6 +54,23 @@ class TimerFragment : Fragment() {
                     }
 
                 }))
+    }
+
+    private fun controlTimer() {
+        timerControlBtn.setOnClickListener {
+            if(timerControlBtn.text == resources.getString(R.string.pause)) {
+                disposeTimer()
+                timerControlBtn.text = resources.getString(R.string.play)
+            }else{
+                compositeDisposable = CompositeDisposable()
+                startTimer(lastTimerValue.toLong())
+                timerControlBtn.text = resources.getString(R.string.pause)
+            }
+        }
+    }
+
+    private fun disposeTimer() {
+        compositeDisposable.dispose()
     }
 
     override fun onDestroy() {

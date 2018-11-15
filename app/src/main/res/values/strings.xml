@@ -5,4 +5,6 @@
     <string name="retrofit2_rxjava">Retrofit2 RxJava</string>
     <string name="rxjava_timer">Timer RxJava</string>
     <string name="done">Done!</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
 </resources>
